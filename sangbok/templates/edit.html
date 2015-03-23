@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+{% if existing %}
+<li><a href="/{{song.id}}/delete/" onclick="return confirm('Är du säker?')">Radera denna visa</a></li>
+{% endif %}
+{% endblock %}
+
+{% block header %}
+{% if existing %}
+<h1>Redigerar visa</h1>
+{% else %}
+<h1>Lägg till en visa</h1>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<form role="form" action="?" method="post">
+	{% csrf_token %} 
+	<div class="form-group">
+		{{form}}
+		<input type="submit" class="form-control" value="Skicka">
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block header%}
+<h1>{{ song.name }}</h1>
+{% endblock %}
+{% block navbar %}
+<li><a href="/{{song.id}}/edit/">Redigera denna visa</a></li>
+{% endblock %}
+{% block content %}
+{% if song.other %}<i>{{ song.other|linebreaks }}</i>{% endif %}
+<p>{{ song.lyrics|linebreaks }}</p>
+{% endblock %}
+{% block footer %}
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+	<a href="/{{song.id|add:"-1"}}/" class="btn btn-default">
+		<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+	</a>
+	<a href="/{{song.id|add:"1"}}/" class="btn btn-default">
+		<span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+	</a>
+	<a href="/{{song.id|add:"1"}}/" class="btn btn-default">
+		<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+	</a>
+</div>
+{% endblock %}
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  ...
+</div>

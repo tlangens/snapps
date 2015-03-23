@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block header %}
+<form id="list-form" action="?" method="get">
+  <label for="categories">Kategori:</label>
+  {{ form.c }}
+</form>
+{% endblock %}
+
+{% block content %}
+  <p>
+    {%for c, songs in categories %}
+      <h4>{{ c.name }}</h4>
+      <ul>
+      {% for s in songs %}
+      <li><a href="/{{s.id}}/">{{ s.name }}</a></li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </p>
+{% endblock %}
+
+{% block scripts %}
+<!-- Multiselect code -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#category-list').multiselect({
+            onDropdownHidden: function() {
+              $('#list-form').submit();
+            }
+        });
+    });
+</script>
+{% endblock %}

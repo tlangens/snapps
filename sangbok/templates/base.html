@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Snapps</title>
+    {% load staticfiles %}
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/sticky-footer-navbar.css" %}" rel="stylesheet" >
+    <link rel="stylesheet" href="{% static "css/bootstrap-multiselect.css" %}" type="text/css"/>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Snapps</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Sök...">
+            </div>
+          </form>
+          <ul class="nav navbar-nav">
+            <li><a href="/add/">Lägg till en visa</a></li>
+            {% block navbar %}
+
+            {% endblock %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="page-header">
+        {% block header %}
+        <h1>Hello World!</h1>
+        {% endblock %}
+      </div>
+      {% block content %}
+        <p> Content Here </p>
+        <a href="/list/">List view</a>
+      {% endblock %}
+      <br>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <nav>
+          <ul class="pager">
+            {% block footer %}
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+              <a href="/{{song.id|add:"1"}}/" class="btn btn-default">
+                <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+              </a>
+            </div>
+            {% endblock %}
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/bootstrap-multiselect.js" %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>
