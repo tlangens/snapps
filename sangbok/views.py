@@ -63,3 +63,30 @@ def list(request):
 def random(request):
 	s = Snapsvisa.objects.order_by('?')[0].id
 	return HttpResponseRedirect('/%d'%s)
+
+def next(request, id):
+	try:
+		s = Snapsvisa.objects.get(id=id)
+	except Snapsvisa.DoesNotExist:
+		raise Http404
+	try:
+		n = s.get_next_by_date_uploaded(category=s.category)
+	except Snapsvisa.DoesNotExist:
+		c = s.category.next()
+		p = Snapsvisa.objects.filter(category=c).earliest(date_uploaded)
+
+	return HttpResponseRedirect('/%d'%n.id)
+
+
+def prev(request, id):
+	try:
+		s = Snapsvisa.objects.get(id=id)
+	except Snapsvisa.DoesNotExist:
+		raise Http404
+	try:
+		p = s.get_previous_by_date_uploaded(category=s.category)
+	except Snapsvisa.DoesNotExist:
+		c = s.category.prev()
+		p = Snapsvisa.objects.filter(category=c).latest(date_uploaded)
+
+	return HttpResponseRedirect('/%d'%p.id)

@@ -12,13 +12,13 @@
 {% endblock %}
 {% block footer %}
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
-	<a href="/{{song.id|add:"-1"}}/" class="btn btn-default">
+	<a href="/{{song.id}}/prev/" class="btn btn-default">
 		<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
 	</a>
 	<a href="/random/" class="btn btn-default">
 		<span class="glyphicon glyphicon-random" aria-hidden="true"></span>
 	</a>
-	<a href="/{{song.id|add:"1"}}/" class="btn btn-default">
+	<a href="/{{song.id}}/next/" class="btn btn-default">
 		<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
 	</a>
 </div>

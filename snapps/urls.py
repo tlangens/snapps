@@ -16,4 +16,6 @@ urlpatterns = patterns('',
     url(r'^list/$', views.list),
     url(r'^search/?', include('haystack.urls')),
     url(r'^random/$', views.random),
+    url(r'^(\d+)/next/$', views.next),
+    url(r'^(\d+)/prev/$', views.prev),
 )
