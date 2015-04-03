@@ -1,0 +1,4 @@
+{{ object.name }}
+{{ object.pre }}
+{{ object.lyrics }}
+{{ object.post }}
