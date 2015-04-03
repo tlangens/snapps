@@ -23,7 +23,6 @@
   </head>
 
   <body>
-
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -37,9 +36,9 @@
           <a class="navbar-brand" href="/">Snapps</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <form class="navbar-form navbar-left" role="search">
+          <form method="get" action="/search?" class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Sök...">
+              <input name="q" type="text" class="form-control" placeholder="Sök...">
             </div>
           </form>
           <ul class="nav navbar-nav">
@@ -56,12 +55,12 @@
     <div class="container">
       <div class="page-header">
         {% block header %}
-        <h1>Hello World!</h1>
+        <h1>Snapps</h1>
         {% endblock %}
       </div>
       {% block content %}
-        <p> Content Here </p>
-        <a href="/list/">List view</a>
+        <p> Snapps - Den elektroniska sångboken. </p>
+        <a href="/list/">Bläddra snapsvisor</a>
       {% endblock %}
       <br>
     </div>
@@ -72,7 +71,7 @@
           <ul class="pager">
             {% block footer %}
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
-              <a href="/{{song.id|add:"1"}}/" class="btn btn-default">
+              <a href="/random/" class="btn btn-default">
                 <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
               </a>
             </div>

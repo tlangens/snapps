@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block navbar %}
-{% if existing %}
-<li><a href="/{{song.id}}/delete/" onclick="return confirm('Är du säker?')">Radera denna visa</a></li>
+{% if song and not song.protected %}
+<li><a href="/{{ song.id }}/delete/" onclick="return confirm('Är du säker?')">Radera denna visa</a></li>
 {% endif %}
 {% endblock %}
 
 {% block header %}
-{% if existing %}
+{% if song %}
+
 <h1>Redigerar visa</h1>
 {% else %}
 <h1>Lägg till en visa</h1>
@@ -15,6 +16,9 @@
 {% endblock %}
 
 {% block content %}
+{% if song.protected %}
+<strong>Denna visa är skyddad och kan inte ändras eller raderas.</strong>
+{% else %}
 <form role="form" action="?" method="post">
 	{% csrf_token %} 
 	<div class="form-group">
@@ -22,4 +26,5 @@
 		<input type="submit" class="form-control" value="Skicka">
 	</div>
 </form>
+{% endif %}
 {% endblock %}

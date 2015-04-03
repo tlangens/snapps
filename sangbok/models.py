@@ -9,11 +9,13 @@ class Category(models.Model):
 
 class Snapsvisa(models.Model):
 	name = models.CharField(max_length=100)
-	other = models.CharField(max_length=256, blank=True)
 	category = models.ForeignKey(Category, default=1)
+	pre = models.CharField(max_length=256, blank=True)
 	lyrics = models.TextField()
+	post = models.CharField(max_length=256, blank=True)
 	date_updated = models.DateField(auto_now=True)
 	date_uploaded = models.DateField(auto_now_add=True)
+	protected = models.BooleanField(default=False)
 
 	def __str__(this):
 		return this.name

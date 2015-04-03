@@ -6,15 +6,16 @@
 <li><a href="/{{song.id}}/edit/">Redigera denna visa</a></li>
 {% endblock %}
 {% block content %}
-{% if song.other %}<i>{{ song.other|linebreaks }}</i>{% endif %}
+{% if song.pre %}<i>{{ song.pre|linebreaks }}</i>{% endif %}
 <p>{{ song.lyrics|linebreaks }}</p>
+{% if song.post %}<i>{{ song.post|linebreaks }}</i>{% endif %}
 {% endblock %}
 {% block footer %}
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
 	<a href="/{{song.id|add:"-1"}}/" class="btn btn-default">
 		<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
 	</a>
-	<a href="/{{song.id|add:"1"}}/" class="btn btn-default">
+	<a href="/random/" class="btn btn-default">
 		<span class="glyphicon glyphicon-random" aria-hidden="true"></span>
 	</a>
 	<a href="/{{song.id|add:"1"}}/" class="btn btn-default">

@@ -10,18 +10,20 @@ class SongForm(forms.ModelForm):
 
     class Meta:
         model = Snapsvisa
-        fields = ('name', 'category', 'lyrics', 'other',)
+        fields = ('name', 'category', 'lyrics', 'pre', 'post',)
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'form-control'}),
             'category': forms.widgets.Select(attrs={'class': 'form-control'}),
             'lyrics': forms.widgets.Textarea(attrs={'class': 'form-control'}),
-            'other': forms.widgets.Textarea(attrs={'class': 'form-control'}),
+            'pre': forms.widgets.Textarea(attrs={'class': 'form-control'}),
+            'post': forms.widgets.Textarea(attrs={'class': 'form-control'}),
         }
         labels = {
             'name': _('Namn'),
-            'other': _('Annat'),
+            'pre': _('Förord'),
             'category': _('Kategori'),
             'lyrics': _('Text'),
+            'post': _('Efterord'),
         }
 
 class CategorySelectForm(forms.Form):

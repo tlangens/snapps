@@ -20,11 +20,11 @@ def editsong(request, song):
 	songobj = Snapsvisa.objects.get(id=song)
 	form = SongForm(data=request.POST or None, instance=songobj)
 	if(request.method == 'POST'):
-		if(form.is_valid()):
+		if(not songobj.protected and form.is_valid()):
 			form.save()
-			return HttpResponseRedirect('/')
+			return HttpResponseRedirect('/%d'%songobj.id)
 	context['form'] = form
-	context['existing'] = True
+	context['song'] = songobj
 	return render(request, 'edit.html', context)
 
 def addsong(request):
@@ -35,11 +35,13 @@ def addsong(request):
 			form.save()
 			return HttpResponseRedirect('/')
 	context['form'] = form
-	context['existing'] = False
+	context['song'] = None
 	return render(request, 'edit.html', context)
 
 def deletesong(request, song):
-	Snapsvisa.objects.get(id=song).delete();
+	s = Snapsvisa.objects.get(id=song)
+	if not s.protected:
+		s.delete();
 	return HttpResponseRedirect('/')
 
 def list(request):
@@ -57,3 +59,7 @@ def list(request):
 		categories.append(t)
 	context = {"songs": s, "form": form, "categories": categories}
 	return render(request, 'category_list.html', context)
+
+def random(request):
+	s = Snapsvisa.objects.order_by('?')[0].id
+	return HttpResponseRedirect('/%d'%s)

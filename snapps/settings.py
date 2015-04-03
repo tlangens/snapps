@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'sangbok',
 )
 
@@ -85,3 +86,10 @@ STATIC_URL = '/static/'
 BASE = os.path.abspath(os.path.dirname(__name__))
 STATICFILES_DIRS = (os.path.join(BASE, "static"),)
 ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
