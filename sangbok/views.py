@@ -13,6 +13,7 @@ def song(request, song):
 	except Snapsvisa.DoesNotExist:
 		raise Http404
 	context = {"song": s}
+	context['catclass'] = 'c%d'%s.category.id
 	return render(request, 'song.html', context)
 
 def editsong(request, song):
@@ -69,24 +70,15 @@ def next(request, id):
 		s = Snapsvisa.objects.get(id=id)
 	except Snapsvisa.DoesNotExist:
 		raise Http404
-	try:
-		n = s.get_next_by_date_uploaded(category=s.category)
-	except Snapsvisa.DoesNotExist:
-		c = s.category.next()
-		p = Snapsvisa.objects.filter(category=c).earliest(date_uploaded)
 
+	n = Snapsvisa.objects.next(s)
 	return HttpResponseRedirect('/%d'%n.id)
-
 
 def prev(request, id):
 	try:
 		s = Snapsvisa.objects.get(id=id)
 	except Snapsvisa.DoesNotExist:
 		raise Http404
-	try:
-		p = s.get_previous_by_date_uploaded(category=s.category)
-	except Snapsvisa.DoesNotExist:
-		c = s.category.prev()
-		p = Snapsvisa.objects.filter(category=c).latest(date_uploaded)
 
+	p = Snapsvisa.objects.prev(s)
 	return HttpResponseRedirect('/%d'%p.id)

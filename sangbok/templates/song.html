@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ STATIC_URL }}/css/categories.css" type="text/css"/>
+<title>{{ song.name }}</title>
+{% endblock %}
 {% block header%}
 <h1>{{ song.name }}</h1>
 {% endblock %}
@@ -24,6 +28,11 @@
 </div>
 {% endblock %}
 
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-  ...
-</div>
+{% block scripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#navbar, #footer').addClass('{{ catclass }}');
+});
+</script>
+{% endblock %}
+
